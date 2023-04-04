@@ -1,0 +1,58 @@
+<?php
+$customers = $this->getCustomers();
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>customer-grid</title>
+</head>
+<body>
+	<div>
+		<div class="header">
+			<?php require_once'View/Html/header.phtml';?>
+		</div>
+
+		<div class="content">
+			<table width="100%" cellspacing="10px" cellpadding="10px" class="css">
+				<tr>
+					<td><h2 align="left">MANAGE CUSTOMERS</h2></td>
+					<td><h3 align="right"><a href="index.php?c=customer&a=add">ADD CUSTOMER</a></h3></td>
+				</tr>
+			</table>
+
+			<table border="2" width="100%">
+				<tr>
+					<th>Customer_id</th>
+					<th>first_Name</th>
+					<th>last_Name</th>
+					<th>Email</th>
+					<th>Gender</th>
+					<th>Mobile</th>
+					<th>Status</th>
+					<th>Created_at</th>
+					<th>Updated_at</th>
+					<th colspan="2">Operations</th>
+				</tr>
+				<?php foreach ($customers as $customer): ?>
+				<tr align="center">
+					<td><?php echo $customer->customer_id ?></td>
+					<td><?php echo $customer->first_name ?></td>
+					<td><?php echo $customer->last_name ?></td>
+					<td><?php echo $customer->email ?></td>
+					<td><?php echo $customer->gender ?></td>
+					<td><?php echo $customer->mobile ?></td>
+					<td><?php echo $customer->status ?></td>
+					<td><?php echo $customer->created_at ?></td>
+					<td><?php echo $customer->updated_at ?></td>
+					<td><a href="index.php?c=customer&a=edit&id=<?php echo $customer->customer_id ?>">EDIT</a></td>
+					<td><a href="index.php?c=customer&a=delete&id=<?php echo $customer->customer_id ?>">DELETE</a></td>
+				</tr>
+			<?php endforeach; ?>
+			</table>
+		</div>
+
+		<div class="footer" align="center"><?php require_once 'View/Html/Footer.phtml';?></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<?php 
+$salesman_prices = $this->getPrices();
+$salesmen = $this->getSalesmen();
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+	<form method="POST" action="index.php?c=salesman_price&a=update&salesmen_id=<?php echo $_GET['salesmen_id']; ?>">
+		<table border="2px" width="100%">
+			<tr>
+				<td>Salesman : 
+					<select>
+						<option>select salesman</option>
+						<?php foreach ($salesmen as $salesman) : ?>
+						<option value="<?php echo $salesman['salesmen_id']; ?>" <?php if($_GET['salesmen_id'] == $salesman['salesmen_id']){ echo 'selected';} ?>><?php echo $salesman['first_name']; ?></option>
+						<?php endforeach;?>
+					</select>
+				</td>
+				<td><input type="submit" value="UPDATE"></td>
+			</tr>
+		</table>
+		<table border="2px" width="100%">
+			<tr>
+				<th>Product ID</th>
+				<th>SKU</th>
+				<th>COST</th>
+				<th>PRICE</th>
+				<th>S-PRICE</th>
+				<th>REMOVE</th>
+			</tr>
+			<?php foreach ($salesman_prices as $prices) : ?>
+			<tr>
+				<td><?php echo $prices['product_id']; ?></td>
+				<td><?php echo $prices['sku']; ?></td>
+				<td><?php echo $prices['cost']; ?></td>
+				<td><?php echo $prices['price']; ?></td>
+				<td><input type="number" name = "salesman_price[<?php echo $prices['product_id']; ?>]" value=<?php echo $prices['salesman_price']; ?>></td>
+				<td>
+					<?php if ($prices['entity_id']) { ?>
+					<a href="index.php?c=salesman_price&a=delete&entity_id=<?php echo $prices['entity_id'];?>&salesmen_id=<?php echo $_GET['salesmen_id']; ?>">REMOVE</a>
+					<?php } ?>
+				</td>
+			</tr>	
+			<?php endforeach;?>
+		</table>
+	</form>
+</body>
+</html>

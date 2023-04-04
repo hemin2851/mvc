@@ -1,0 +1,92 @@
+<?php
+$product = $this->getData();
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>product-edit</title>
+</head>
+<body>
+<form method="POST" action="index.php?c=product&a=save&id=<?php echo $product->product_id;?>" align="center">
+<table width="100%">
+	<tr>
+		<td><h2 align="left">EDIT PRODUCT</h2></td>
+		<td><h3 align="right"><a href="index.php?c=product&a=grid">CANCEL</a></h3></td>
+		<td><h3 align="right"><button>SAVE</button></h3></td>
+	</tr>
+</table>
+<table border="3" width="100%" cellpadding="10">
+
+		<tr>
+			<td colspan="2"><h3>PRODUCT INFORMATION</h3></td>
+		</tr>
+
+		<tr>
+			<td>Name:</td>
+			<td><input type="text" name="product[name]" value="<?php echo $product->name?>"></td>
+			<!-- <input type="hidden" name="id" value="<?php echo $product->product_id ?>"> -->
+		</tr>
+
+		<tr>
+			<td>Sku:</td>
+			<td><input type="text" name="product[sku]" value="<?php echo $product->sku ?>"></td>
+		</tr>
+
+		<tr>
+			<td>Cost:</td>
+			<td><input type="text" name="product[cost]" value="<?php echo $product->cost?>"></td>
+		</tr>
+
+		<tr>
+			<td>Price:</td>
+			<td><input type="text" name="product[price]" value="<?php echo $product->price ?>"></td>
+		</tr>
+
+		<tr>
+			<td>Quantity:</td>
+			<td><input type="text" name="product[quantity]" value="<?php echo $product->quantity ?>"></td>
+		</tr>
+
+		<tr>
+			<td>Description:</td>
+			<td><input type="text" name="product[description]" value="<?php echo $product->description?>"></td>
+		</tr>
+
+		<?php $statusOptions = [1=>"Active" , 2=>"Inactive"];?>
+		<tr>
+			<td>Status</td>
+			<td>
+				<select name="product[status]">
+				<?php foreach ($statusOptions as $value => $label):?>
+				<option value="<?php echo $value;?>" <?php if ($product->status == $value)echo "selected";?>><?php echo $label;?></option>
+				<?php endforeach; ?>
+			</select></td>
+		</tr>
+
+		<?php $colorOptions = [1=>"yes" , 2=>"no"];?>
+		<tr>
+			<td>Color</td>
+			<td>
+				<select name="product[color]">
+				<?php foreach ($colorOptions as $value => $label):?>
+				<option value="<?php echo $value;?>" <?php if ($product->color == $value)echo "selected";?>><?php echo $label;?></option>
+				<?php endforeach; ?>
+			</select></td>
+		</tr>
+
+		<?php $materialOptions = [1=>"yes" , 2=>"no"];?>
+		<tr>
+			<td>Material</td>
+			<td>
+				<select name="product[material]">
+				<?php foreach ($materialOptions as $value => $label):?>
+				<option value="<?php echo $value;?>" <?php if ($product->material == $value)echo "selected";?>><?php echo $label;?></option>
+				<?php endforeach; ?>
+			</select></td>
+		</tr>
+
+</table>
+</form>
+</body>
+</html>

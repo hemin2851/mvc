@@ -1,0 +1,53 @@
+<?php
+$categories = $this->getData();
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>category-grid</title>
+</head>
+<body>
+	<div>
+		<div class="header">
+			<?php require_once'View/html/Header.phtml';?>
+		</div>
+
+		<div class="content">
+		<table width="100%" cellspacing="10px" cellpadding="10px" class="css">
+				<tr>
+					<td><h2 align="left">MANAGE CATEGORIES</h2></td>
+					<td><h3 align="right"><a href="index.php?c=category&a=add">ADD CATEGORY</a></h3></td>
+				</tr>
+		</table>
+
+	<table border="3" width="100%" align="center" cellpadding="4px" cellspacing="4px">
+	 	<tr>
+	 		<th>CATEGORY_ID</th>
+	 		<th>NAME</th>
+	 		<th>path</th>
+	 		<th>STATUS</th>
+	 		<th>DESCRIPTION</th>
+	 		<th>CREATED_AT</th>
+	 		<th>UPDATED_AT</th>
+	 		<th colspan="2">OPERATIONS</th>
+	 	</tr>
+	 	<?php  foreach ($categories as $key => $category): ?>
+	 	<tr align="center">
+	 		<td><?php echo $category->category_id; ?></td>
+	 		<td><?php echo $category->name; ?></td>
+	 		<td><?php echo $category->path; ?></td>
+	 		<td><?php echo $category->status; ?></td>
+	 		<td><?php echo $category->description; ?></td>
+	 		<td><?php echo $category->created_at; ?></td>
+	 		<td><?php echo $category->updated_at; ?></td>
+	 		<td><a href="index.php?c=category&a=edit&id=<?php echo $category->category_id ;?>">EDIT</a></td>
+	 		<td><a href="index.php?c=category&a=delete&id=<?php echo $category->category_id ;?>">DELETE</a></td>
+	 	</tr>
+	 	<?php endforeach ?>
+	</table>
+	</div>
+	 <div class="footer" align="center"><?php require_once 'view/Html/footer.phtml';?></div>
+</div>
+</body>
+</html>

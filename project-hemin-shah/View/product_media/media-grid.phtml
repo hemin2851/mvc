@@ -1,0 +1,71 @@
+<?php 
+$images = $this->getImages();
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+	<div class="header">
+			<?php require_once'View/html/Header.phtml';?>
+	</div>
+	<form method="POST" action="index.php?c=product_media&a=save&product_id=<?php echo $_GET["product_id"];?>">
+		<div class="content">
+			<table width="100%">
+			<tr>
+				<td><h2>Product Image Table</h2></td>
+				<td align="left">
+				<a href="index.php?c=product_media&a=add&product_id=<?php echo $_GET["product_id"];?>">ADD IMAGE</a>
+				</td>
+				<td align="right">
+				<input type="submit" value="Save">
+				</td>
+			</tr>
+			</table>
+			<table border="2" width="100%">
+				<tr>
+					<th>Media_id</th>
+					<th>Product id</th>
+					<th>Name</th>
+					<th>Image</th>
+					<th>Created At</th>	
+					<th>Base</th>
+					<th>Thumnail</th>
+					<th>Small</th>
+					<th>Gallary</th>
+					<th>File name</th>
+					<th>Delete</th>
+				</tr>
+				<?php foreach ($images as $image): ?> 
+				<tr>
+					<td><?php echo $image['media_id']; ?></td>
+					<td><?php echo $_GET["product_id"];?></td>
+					<td><?php echo $image['name']; ?></td>
+					<td><img src="View/product_media/Images/<?php echo $image['file_name']; ?>" width="50px" height="50px" alt="Italian Trulli"><img /></td>
+					<td><?php echo $image['created_at']; ?></td>
+					<td>
+						<input type="radio" name="base" value=<?php echo $image['media_id'];?> <?php if($image['base'] !== '0'){echo "checked";} ?>>
+					</td>
+					<td>
+						<input type="radio" name="thumbnail" value=<?php echo $image['media_id'];?> <?php if($image['thumbnail'] !== '0'){echo "checked";} ?>>
+					</td>
+					<td>
+						<input type="radio" name="small" value=<?php echo $image['media_id'];?> <?php if($image['small'] !== '0'){echo "checked";} ?>>
+					</td>
+					<td>
+						<input type="checkbox" name="gallery[]" value=<?php echo $image['media_id'];?> <?php if($image['gallery'] !== '0'){echo "checked";} ?>>
+					</td>
+					<td><?php echo $image['file_name']; ?></td>
+					<td>
+						<a href="index.php?c=product_media&a=delete&media_id=<?php echo $image['media_id'];?>&product_id=<?php echo $_GET["product_id"];?>">Delete</a>
+					</td>
+				</tr>
+				<?php endforeach; ?>
+			</table>
+		</div>
+	</form>
+</body>
+</html>

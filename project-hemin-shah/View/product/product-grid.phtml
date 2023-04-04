@@ -1,0 +1,66 @@
+<?php
+$products = $this->getData();
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>product-grid</title>
+</head>
+<body>
+	<div>
+		<div class="header">
+			<?php require_once'View/html/Header.phtml';?>
+		</div>
+
+		<div class="content">
+			<table width="100%" cellspacing="10px" cellpadding="10px" class="css">
+				<tr>
+					<td><h2 align="left">MANAGE PRODUCT</h2></td>
+					<td><h3 align="right"><a href="index.php?c=product&a=add">ADD PRODUCT</a></h3></td>
+				</tr>
+			</table>
+
+			<table border="2" width="100%">
+				<tr>
+					<th>Product_id</th>
+					<th>Name</th>
+					<th>Sku</th>
+					<th>Cost</th>
+					<th>Price</th>
+					<th>Quantity</th>
+					<th>Description</th>
+					<th>Status</th>
+					<th>Color</th>
+					<th>Material</th>
+					<th>Images</th>
+					<th>Created_at</th>
+					<th>Updated_at</th>
+					<th colspan="2">Operations</th>
+				</tr>
+				<?php  foreach ($products as $product): ?>
+				<tr align="center">
+					<td><?php echo $product->product_id ?></td>
+					<td><?php echo $product->name ?></td>
+					<td><?php echo $product->sku ?></td>
+					<td><?php echo $product->cost ?></td>
+					<td><?php echo $product->price ?></td>
+					<td><?php echo $product->quantity ?></td>
+					<td><?php echo $product->description ?></td>
+					<td><?php echo $product->status ?></td>
+					<td><?php echo $product->color ?></td>
+					<td><?php echo $product->material ?></td>
+					<td><a href="index.php?c=product_Media&a=grid&product_id=<?php echo $product->product_id ?>">IMAGES</a></td>
+					<td><?php echo $product->created_at ?></td>
+					<td><?php echo $product->updated_at ?></td>
+					<td><a href="index.php?c=product&a=edit&id=<?php echo $product->product_id ?>">EDIT</a></td>
+					<td><a href="index.php?c=product&a=delete&id=<?php echo $product->product_id ?>">DELETE</a></td>
+				</tr>
+				<?php endforeach ?>
+			</table>
+		</div>
+
+		<div class="footer" align="center"><?php require_once 'view/Html/footer.phtml';?></div>
+</div>
+</body>
+</html>

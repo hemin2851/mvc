@@ -1,0 +1,62 @@
+<?php
+$salesmen = $this->getSalesmen();
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>salesmen-grid</title>
+</head>
+<body>
+	<div>
+		<div class="header">
+			<?php require_once'View/Html/header.phtml';?>
+		</div>
+
+		<div class="content">
+			<table width="100%" cellspacing="10px" cellpadding="10px" class="css">
+				<tr>
+					<td><h2 align="left">MANAGE SALESMEN</h2></td>
+					<td><h3 align="right"><a href="index.php?c=salesman&a=add">ADD SALESMAN</a></h3></td>
+				</tr>
+			</table>
+
+			<table border="2" width="100%">
+				<tr>
+					<th>salesman_id</th>
+					<th>first_Name</th>
+					<th>last_Name</th>
+					<th>Email</th>
+					<th>Gender</th>
+					<th>Mobile</th>
+					<th>Status</th>
+					<th>Company</th>
+					<th>Created_at</th>
+					<th>Updated_at</th>
+					<th>Price</th>
+					<th colspan="2">Operations</th>
+				</tr>
+				<?php foreach ($salesmen as $salesman): ?>
+				<tr align="center">
+					<td><?php echo $salesman['salesmen_id']?></td>
+					<td><?php echo $salesman['first_name']?></td>
+					<td><?php echo $salesman['last_name']?></td>
+					<td><?php echo $salesman['email']?></td>
+					<td><?php echo $salesman['gender']?></td>
+					<td><?php echo $salesman['mobile']?></td>
+					<td><?php echo $salesman['status']?></td>
+					<td><?php echo $salesman['company']?></td>
+					<td><?php echo $salesman['created_at']?></td>
+					<td><?php echo $salesman['updated_at']?></td>
+					<td><a href="index.php?c=salesman_price&a=grid&salesmen_id=<?php echo $salesman["salesmen_id"] ?>">Show Prices</a></td>
+					<td><a href="index.php?c=salesman&a=edit&id=<?php echo $salesman['salesmen_id'] ?>">EDIT</a></td>
+					<td><a href="index.php?c=salesman&a=delete&id=<?php echo $salesman['salesmen_id'] ?>">DELETE</a></td>
+				</tr>
+			<?php endforeach; ?>
+			</table>
+		</div>
+
+		<div class="footer" align="center"><?php require_once 'View/Html/Footer.phtml';?></div>
+	</div>
+</body>
+</html>

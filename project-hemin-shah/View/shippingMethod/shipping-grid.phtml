@@ -1,0 +1,63 @@
+<?php
+$shippings = $this->getData();
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>shipping-grid</title>
+</head>
+<body>
+	<div>
+		<div class="header">
+			<?php require_once'View/html/Header.phtml';?>
+		</div>
+
+		<div class="content">
+		<table width="100%" cellspacing="10px" cellpadding="10px" class="css">
+				<tr>
+					<td><h2 align="left">MANAGE SHIPPINGS</h2></td>
+					<td><h3 align="right"><a href="index.php?c=shippingMethod&a=add">ADD SHIPPING</a></h3></td>
+				</tr>
+		</table>
+
+	<table border="3" width="100%" align="center" cellpadding="4px" cellspacing="4px">
+	 	<tr>
+	 		<th>SHIPPING_ID</th>
+	 		<th>NAME</th>
+	 		<th>AMOUNT</th>
+	 		<th>STATUS</th>
+	 		<th>CREATED_AT</th>
+	 		<th>UPDATED_AT</th>
+	 		<th colspan="2">OPERATIONS</th>
+	 	</tr>
+	 	<?php if (!$shippings) 
+	 	{
+	 		?>
+	 		<td>data not found</td>
+	 		<?php
+	 	}
+	 	else
+	 	{
+	 		?>
+	 		
+
+	 	<?php  foreach ($shippings as $key => $shipping): ?>
+	 	<tr align="center">
+	 		<td><?php echo $shipping->shipping_method_id; ?></td>
+	 		<td><?php echo $shipping->name; ?></td>
+	 		<td><?php echo $shipping->amount; ?></td>
+	 		<td><?php echo $shipping->getStatusText(); ?></td>
+	 		<td><?php echo $shipping->created_at; ?></td>
+	 		<td><?php echo $shipping->updated_at; ?></td>
+	 		<td><a href="index.php?c=shippingMethod&a=edit&id=<?php echo $shipping->shipping_method_id;?>">EDIT</a></td>
+	 		<td><a href="index.php?c=shippingMethod&a=delete&id=<?php echo $shipping->shipping_method_id;?>">DELETE</a></td>
+	 	</tr>
+	 	<?php endforeach ?>
+	 	<?php }  ?>
+	</table>
+	</div>
+	 <div class="footer" align="center"><?php require_once 'view/Html/footer.phtml';?></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<?php
+require_once './Model/Core/message.php';
+$message = new Model_Core_Message();
+$temp = $message->getMessage();
+
+foreach ($temp as $type => $value) 
+{
+	if (isset($type)) 
+	{
+		echo "<div class = {$type}>";
+		echo "<h3>",$value,"</h3";
+		echo "</div>";
+	}
+}
+$message->clearMessage();
+?>
+
+<style type="text/css">
+	   .header{
+			border: solid;
+			height: 30px;
+			margin-bottom: 20px;
+		}
+		.color{
+			background-color: aliceblue;
+			color: white;
+		}
+		.content{
+			border: solid;
+			height: 600px;
+		}
+		.footer{
+			border: solid;
+			height: 30px;
+		}
+		.css{
+				background-color: whitesmoke;
+				color: black;
+				margin-bottom: 20px;
+				padding: 10px;
+			}
+		.success{
+			background-color: green;
+			align-items: center;
+			color: whitesmoke;
+		}
+		.failure{
+			background-color: red;
+			align-items: center;
+			color: whitesmoke;
+		}
+		.notice{
+			background-color: orange;
+			align-items: center;
+			color: whitesmoke;
+		}
+</style>
+<table border="2" class="color">
+		<tr align="center">
+			<td width="250"><a href="index.php?c=category&a=grid">CATEGORY</a></td>
+			<td width="250"><a href="index.php?c=customer&a=grid">CUSTOMER</a></td>
+			<td width="250"><a href="index.php?c=vendor&a=grid">VENDOR</a></td>
+			<td width="250"><a href="index.php?c=salesman&a=grid">SALESMEN</a></td>
+			<td width="250"><a href="index.php?c=Product&a=grid">PRODUCT</a></td>
+			<td width="250"><a href="index.php?c=shippingMethod&a=grid">SHIPPING_METHOD</a></td>
+			<td width="250"><a href="index.php?c=paymentMethod&a=grid">PAYMENT_METHOD</a></td>
+		</tr>
+</table>

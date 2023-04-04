@@ -1,0 +1,51 @@
+<?php
+$admins = $this->getData();
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>admin-grid</title>
+</head>
+<body>
+	<div>
+		<div class="header">
+			<?php require_once'View/html/Header.phtml';?>
+		</div>
+
+		<div class="content">
+		<table width="100%" cellspacing="10px" cellpadding="10px" class="css">
+				<tr>
+					<td><h2 align="left">MANAGE ADMIN</h2></td>
+					<td><h3 align="right"><a href="index.php?c=admin&a=add">ADD ADMIN</a></h3></td>
+				</tr>
+		</table>
+
+	<table border="3" width="100%" align="center" cellpadding="4px" cellspacing="4px">
+	 	<tr>
+	 		<th>ADMIN_ID</th>
+	 		<th>NAME</th>
+	 		<th>EMAIL</th>
+	 		<th>STATUS</th>
+	 		<th>CREATED_AT</th>
+	 		<th>UPDATED_AT</th>
+	 		<th colspan="2">OPERATIONS</th>
+	 	</tr>
+	 	<?php  foreach ($admins as $admin): ?>
+	 	<tr align="center">
+	 		<td><?php echo $admin->admin_id; ?></td>
+	 		<td><?php echo $admin->name; ?></td>
+	 		<td><?php echo $admin->email; ?></td>
+	 		<td><?php echo $admin->status; ?></td>
+	 		<td><?php echo $admin->created_at; ?></td>
+	 		<td><?php echo $admin->updated_at; ?></td>
+	 		<td><a href="index.php?c=admin&a=edit&id=<?php echo $admin->admin_id;?>">EDIT</a></td>
+	 		<td><a href="index.php?c=admin&a=delete&id=<?php echo $admin->admin_id;?>">DELETE</a></td>
+	 	</tr>
+	 	<?php endforeach ?>
+	</table>
+	</div>
+	 <div class="footer" align="center"><?php require_once 'view/Html/footer.phtml';?></div>
+</div>
+</body>
+</html>
